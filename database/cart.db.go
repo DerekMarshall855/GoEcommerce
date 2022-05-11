@@ -10,18 +10,18 @@ var (
 	ErrCantBuyItem       = errors.New("Item Cannot Be Bought")
 )
 
-func AddToCart() {
+func AddToCart() string {
 
 }
 
-func RemoveFromCart() {
+func RemoveFromCart() string {
 
 }
 
-func BuyItemFromCart() {
+func BuyItemFromCart() string {
 
 }
 
-func InstantBuy() {
+func InstantBuy() string {
 
 }
