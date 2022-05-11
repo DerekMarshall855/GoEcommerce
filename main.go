@@ -27,7 +27,7 @@ func main() {
 
 	router.GET("/addtocart", app.AddToCart())
 	router.GET("/removeitem", app.RemoveItem())
-	router.GET("/checkout", app.Checkout())
+	router.GET("/checkout", app.BuyFromCart())
 	router.GET("/instantbuy", app.InstantBuy())
 
 	log.Fatal(router.Run(":" + port))
