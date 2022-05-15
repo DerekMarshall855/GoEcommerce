@@ -92,8 +92,8 @@ func EditHomeAddress() gin.HandlerFunc {
 		}
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
-		filter := bson.D{primitive.E{Key:"_id", Value:userObjectId}}
-		update := bson.D{{Key:"$set", Value:bson.D{primitive.E{Key:"Address.0.houseName", Value: editAddress.House}, {Key:"Address.0.streetName", Value: editAddress.Street}, {Key:"Address.0.cityName", Value: editAddress.City}, {Key:"Address.0.postalCode", Value:editAddress.postalCode}}}}}
+		filter := bson.D{primitive.E{Key: "_id", Value: userObjectId}}
+		update := bson.D{{Key: "$set", Value: bson.D{primitive.E{Key: "Address.0.houseName", Value: editAddress.House}, {Key: "Address.0.streetName", Value: editAddress.Street}, {Key: "Address.0.cityName", Value: editAddress.City}, {Key: "Address.0.postalCode", Value: editAddress.PostalCode}}}}
 		_, err = UserCollection.UpdateOne(ctx, filter, update)
 		if err != nil {
 			c.IndentedJSON(500, "Something Went Wrong")
@@ -126,8 +126,8 @@ func EditWorkAddress() gin.HandlerFunc {
 		}
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
-		filter := bson.D{primitive.E{Key:"_id", Value:userObjectId}}
-		update := bson.D{{Key:"$set", Value:bson.D{primitive.E{Key:"Address.1.houseName", Value: editAddress.House}, {Key:"Address.1.streetName", Value: editAddress.Street}, {Key:"Address.1.cityName", Value: editAddress.City}, {Key:"Address.1.postalCode", Value:editAddress.postalCode}}}}}
+		filter := bson.D{primitive.E{Key: "_id", Value: userObjectId}}
+		update := bson.D{{Key: "$set", Value: bson.D{primitive.E{Key: "Address.1.houseName", Value: editAddress.House}, {Key: "Address.1.streetName", Value: editAddress.Street}, {Key: "Address.1.cityName", Value: editAddress.City}, {Key: "Address.1.postalCode", Value: editAddress.PostalCode}}}}
 		_, err = UserCollection.UpdateOne(ctx, filter, update)
 		if err != nil {
 			c.IndentedJSON(500, "Something Went Wrong")
