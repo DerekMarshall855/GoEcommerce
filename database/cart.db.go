@@ -13,12 +13,12 @@ import (
 )
 
 var (
-	ErrCantFindProduct   = errors.New("Product Cannot Be Found")
-	ErrCantDecodeProduct = errors.New("Product Cannot Be Decoded")
-	ErrCantUpdateUser    = errors.New("User Cannot Be Updated")
-	ErrCantRemoveItem    = errors.New("Item Cannot Be Removed")
-	ErrCantBuyItem       = errors.New("Item Cannot Be Bought")
-	ErrInvalidUserId     = errors.New("Invalid User Id")
+	ErrCantFindProduct   = errors.New("product cannot be found")
+	ErrCantDecodeProduct = errors.New("product cannot be decoded")
+	ErrCantUpdateUser    = errors.New("user cannot be updated")
+	ErrCantRemoveItem    = errors.New("item cannot be removed")
+	ErrCantBuyItem       = errors.New("item cannot be bought")
+	ErrInvalidUserId     = errors.New("invalid userId")
 )
 
 func AddToCart(ctx context.Context, prodCollection, userCollection *mongo.Collection, productId primitive.ObjectID, userId string) error {
@@ -89,13 +89,11 @@ func BuyItemFromCart(ctx context.Context, prodCollection, userCollection *mongo.
 	ctx.Done()
 	if err != nil {
 		panic(err)
-		return ErrCantBuyItem
 	}
 
 	var getUserCart []bson.M
 	if err = currentResults.All(ctx, &getUserCart); err != nil {
 		panic(err)
-		return ErrCantBuyItem
 	}
 
 	var totalPrice int32
@@ -126,6 +124,9 @@ func BuyItemFromCart(ctx context.Context, prodCollection, userCollection *mongo.
 	emptyUserCart := make([]models.ProductUser, 0)
 	emptyCartUpdate := bson.D{{Key: "$set", Value: bson.D{primitive.E{Key: "userCart", Value: emptyUserCart}}}}
 	_, err = userCollection.UpdateOne(ctx, filter, emptyCartUpdate)
+	if err != nil {
+		return ErrCantBuyItem
+	}
 
 	return nil
 }
