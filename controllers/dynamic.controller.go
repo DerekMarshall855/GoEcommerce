@@ -3,6 +3,7 @@ package controllers
 import (
 	"GoEcommerceApp/database"
 	"GoEcommerceApp/models"
+	generate "GoEcommerceApp/tokens"
 	"context"
 	"fmt"
 	"log"
