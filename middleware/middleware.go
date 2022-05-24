@@ -9,7 +9,7 @@ import (
 
 func Authetication() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		ClientToken := c.Request.Header.get("token")
+		ClientToken := c.Request.Header.Get("token")
 		if ClientToken == "" {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "No auth header"})
 			c.Abort()
