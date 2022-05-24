@@ -138,7 +138,7 @@ func Login() gin.HandlerFunc {
 			return
 		}
 
-		token, refereshToken, _ := generate.TokenGenerator(*foundUser.Email, *foundUser.FirstName, *foundUser.LastName, *foundUser.UserId)
+		token, refereshToken, _ := generate.TokenGenerator(*foundUser.Email, *foundUser.FirstName, *foundUser.LastName, foundUser.UserId)
 		defer cancel()
 
 		generate.UpdateAllTokens(token, refereshToken, foundUser.UserId)
@@ -148,7 +148,9 @@ func Login() gin.HandlerFunc {
 }
 
 func ProductViewerAdmin() gin.HandlerFunc {
+	return func(c *gin.Context) {
 
+	}
 }
 
 func SearchProduct() gin.HandlerFunc {
