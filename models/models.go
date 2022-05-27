@@ -11,7 +11,7 @@ type User struct {
 	FirstName      *string            `json:"firstName" validate:"required,min=2,max=30"`
 	LastName       *string            `json:"lastName"  validate:"required,min=2,max=30"`
 	Password       *string            `json:"password"  validate:"required,min=6"`
-	Email          *string            `json:"email"     validate:"email, required"`
+	Email          *string            `json:"email"     validate:"email,required"`
 	Phone          *string            `json:"phone" validate:"required"`
 	AuthToken      *string            `json:"authToken"`
 	RefreshToken   *string            `json:"refreshToken"`
